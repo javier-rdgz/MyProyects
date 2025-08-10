@@ -1,0 +1,403 @@
+[
+    {
+        "id": "359e848520292208",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3509b8ecd2ec2208",
+        "type": "mqtt in",
+        "z": "359e848520292208",
+        "name": "",
+        "topic": "javierrdgzrz/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "fba84ce0a34097c9",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 380,
+        "wires": [
+            [
+                "8de73c9d246ed10f"
+            ]
+        ]
+    },
+    {
+        "id": "da4cc9b9a88610d9",
+        "type": "ui_gauge",
+        "z": "359e848520292208",
+        "name": "",
+        "group": "38fe27308760ec11",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Humidity gauge",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 620,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "9b7aba42c654a3cb",
+        "type": "ui_gauge",
+        "z": "359e848520292208",
+        "name": "",
+        "group": "38fe27308760ec11",
+        "order": 0,
+        "width": "6",
+        "height": "5",
+        "gtype": "gage",
+        "title": "Temperature gauge",
+        "label": "ºC",
+        "format": "{{value}}",
+        "min": "-40",
+        "max": "80",
+        "colors": [
+            "#002db3",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 630,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "8de73c9d246ed10f",
+        "type": "switch",
+        "z": "359e848520292208",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "temperature",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "humidity",
+                "vt": "str"
+            },
+            {
+                "t": "nempty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "1f8b5859beb9587d",
+                "9b7aba42c654a3cb",
+                "b3448e8bc293961b"
+            ],
+            [
+                "da4cc9b9a88610d9",
+                "0846a83e12c7ce3d"
+            ],
+            [
+                "1ce02d26df4b5984"
+            ]
+        ]
+    },
+    {
+        "id": "1ce02d26df4b5984",
+        "type": "ui_chart",
+        "z": "359e848520292208",
+        "name": "",
+        "group": "343eb82153732456",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "label": "Humidity/Temperature graph",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-40",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 660,
+        "y": 500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1f8b5859beb9587d",
+        "type": "ui_chart",
+        "z": "359e848520292208",
+        "name": "",
+        "group": "343eb82153732456",
+        "order": 1,
+        "width": "6",
+        "height": "5",
+        "label": "Temperature graph",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-40",
+        "ymax": "80",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 630,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bd45140d9baa64bf",
+        "type": "template",
+        "z": "359e848520292208",
+        "name": "Temperature template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "[\n    {\n        \"temperature\": {{payload}} \n    },\n    {\n        \"sensor_id\": \"temperature_sensor\",\n        \"area\": \"Granada\"\n    }\n]",
+        "output": "json",
+        "x": 820,
+        "y": 340,
+        "wires": [
+            [
+                "a49890403f5963d3"
+            ]
+        ]
+    },
+    {
+        "id": "7b955358d16ed780",
+        "type": "template",
+        "z": "359e848520292208",
+        "name": "Humidity template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "[\n    {\n        \"humidity\": {{payload}} \n    },\n    {\n        \"sensor_id\": \"humidity_sensor\",\n        \"area\": \"Madrid\"\n    }\n]",
+        "output": "json",
+        "x": 810,
+        "y": 400,
+        "wires": [
+            [
+                "25a46bd877ee89f6"
+            ]
+        ]
+    },
+    {
+        "id": "b3448e8bc293961b",
+        "type": "function",
+        "z": "359e848520292208",
+        "name": "temp to float",
+        "func": "let temp = parseFloat(msg.payload)\nmsg.payload = temp\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 340,
+        "wires": [
+            [
+                "bd45140d9baa64bf"
+            ]
+        ]
+    },
+    {
+        "id": "0846a83e12c7ce3d",
+        "type": "function",
+        "z": "359e848520292208",
+        "name": "hum to float",
+        "func": "let hum = parseFloat(msg.payload)\nmsg.payload = hum\nreturn msg",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 400,
+        "wires": [
+            [
+                "7b955358d16ed780"
+            ]
+        ]
+    },
+    {
+        "id": "a49890403f5963d3",
+        "type": "influxdb out",
+        "z": "359e848520292208",
+        "influxdb": "41b757a9a6de4dc4",
+        "name": "temperature transmitter",
+        "measurement": "temperature",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "javierrdgzrz2",
+        "bucket": "receptor-ambiental",
+        "x": 1070,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "25a46bd877ee89f6",
+        "type": "influxdb out",
+        "z": "359e848520292208",
+        "influxdb": "41b757a9a6de4dc4",
+        "name": "humidity transmitter",
+        "measurement": "humidity",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "javierrdgzrz2",
+        "bucket": "receptor-ambiental",
+        "x": 1050,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "fba84ce0a34097c9",
+        "type": "mqtt-broker",
+        "name": "broker practicas tokio",
+        "broker": "mqtt.practicas-iot.tokioschool.com",
+        "port": "8883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "38fe27308760ec11",
+        "type": "ui_group",
+        "name": "Gauge",
+        "tab": "5367e60d4d374349",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "343eb82153732456",
+        "type": "ui_group",
+        "name": "Graph",
+        "tab": "5367e60d4d374349",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "41b757a9a6de4dc4",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "influxdb",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "https://influxdb.practicas-iot.tokioschool.com",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "5367e60d4d374349",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
